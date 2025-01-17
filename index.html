@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | OKX_Wallet_Connect_Demo</title>
+    <title>Unity WebGL Player | OKX-Demo</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -20,7 +20,7 @@
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">OKX_Wallet_Connect_Demo</div>
+        <div id="unity-build-title">OKX-Demo</div>
       </div>
     </div>
     <script>
@@ -30,6 +30,7 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
+
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
       // If type=='warning', a yellow highlight color is used.
@@ -62,7 +63,7 @@
         codeUrl: buildUrl + "/okx-build2.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
-        productName: "OKX_Wallet_Connect_Demo",
+        productName: "OKX-Demo",
         productVersion: "1.0",
         showBanner: unityShowBanner,
       };
@@ -82,13 +83,11 @@
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
         container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
 
         // To lower canvas resolution on mobile devices to gain some
         // performance, uncomment the following line:
         // config.devicePixelRatio = 1;
-
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
 
         unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
@@ -99,20 +98,14 @@
       }
 
       loadingBar.style.display = "block";
-      
+
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
-        if (typeof window.okxwallet !== 'undefined') { // OKX Not installed
-          okxwallet.on("accountsChanged", (accounts) => {
-          if(accounts.length<=0){
-              window.location.reload();
-            }
-          });
-          }
+          web3UnityInstance = unityInstance;
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
@@ -122,15 +115,6 @@
         });
       };
       document.body.appendChild(script);
-
-      if (typeof window.okxwallet !== 'undefined') { //OKX is not installed
-        console.log('OKX is installed!');
-        okxwallet.on('chainChanged', (chainId) => {
-          window.location.reload();
-          console.log("Chain Changed");
-        });
-      }
-
     </script>
   </body>
 </html>
