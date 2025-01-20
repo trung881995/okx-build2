@@ -6,7 +6,8 @@
     <title>Unity WebGL Player | thirdwed_OKX</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="StreamingAssets/okx-wallet.bundle.js"></script>
+    <script src="https://unpkg.com/@okxconnect/ui"></script>
+    <script src="https://unpkg.com/@okxconnect/sui-provider"></script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -24,6 +25,7 @@
         <div id="unity-build-title">thirdwed_OKX</div>
       </div>
     </div>
+    <script src="StreamingAssets/okx-wallet.bundle.js"></script>
     <script>
 
       var container = document.querySelector("#unity-container");

@@ -18,6 +18,8 @@
  * Released under the MIT License.
  */
 
+/*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) */
+
 /** @preserve
 	 * Counter block mode compatible with  Dr Brian Gladman fileenc.c
 	 * derived from CryptoJS.mode.CTR
