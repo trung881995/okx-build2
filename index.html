@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="TemplateData/style.css" />
     <script src="https://unpkg.com/@okxconnect/ui"></script>
     <script src="https://unpkg.com/@okxconnect/universal-provider"></script>
-    <script src="https://unpkg.com/@okxconnect/tonsdk"></script>
   </head>
 
   <body>
@@ -96,7 +95,7 @@
             window.unityInstance = unityInstance;
             loadingBar.style.display = "none";
             fullscreenButton.onclick = () => {
-              document.makeFullscreen('unity-container');
+              document.makeFullscreen("unity-container");
             };
           })
           .catch((message) => {
